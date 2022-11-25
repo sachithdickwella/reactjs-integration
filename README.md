@@ -1,2 +1,2 @@
-# reactjs-integration
-POC project React.js with Node.js, YARN and AWS Fargate
+# React.js Integration with AWS Fargate
+POC project to React.js with Node.js, YARN and AWS Fargate
