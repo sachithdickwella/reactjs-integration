@@ -1,15 +1,45 @@
 import "../assets/styles/App.css"
-import {MDBCard, MDBCardBody, MDBCardTitle, MDBCol, MDBInput, MDBRow, MDBTypography} from "mdb-react-ui-kit";
+import {MDBBtn, MDBCard, MDBCardBody, MDBCardTitle, MDBCol, MDBInput, MDBRow, MDBTypography} from "mdb-react-ui-kit";
+import React from "react";
 
-export default function Registration(): any {
-    return (
-        <MDBCard>
-            <MDBCardBody className="pt-5 pl-5 pr-5">
-                <MDBCardTitle>Create your Placeholder Account</MDBCardTitle>
-                <br/>
-                <MDBRow id="personal-register">
-                    <MDBCol size='7'>
-                        <form name="register" autoComplete="off">
+class Registration extends React.Component {
+
+    /**
+     * @param evt
+     */
+    passwordImage(evt: any) {
+        evt.currentTarget.classList.toggle('fa-eye');
+    }
+
+    /**
+    * @param id
+    */
+    passwordInput(id: string) {
+        const inputElement = document.getElementById(id) as HTMLInputElement;
+        if (inputElement.getAttribute('type') === 'password') inputElement.setAttribute('type', 'text');
+        else inputElement.setAttribute('type', 'password');
+    }
+
+
+    next(evt: any) {
+
+    }
+
+    signin(evt: any) {
+
+    }
+
+    /**
+     * @return any
+     */
+    firstPage(): any {
+        return (
+            <MDBCard>
+                <MDBCardBody className="pt-5 pl-5 pr-5 pb-5">
+                    <MDBCardTitle>Create your Placeholder Account</MDBCardTitle>
+                    <br/>
+                    <MDBRow id="personal-register">
+                        <MDBCol size='7'>
                             <MDBRow>
                                 <MDBCol size='4'>
                                     <MDBInput id="fname"
@@ -55,18 +85,23 @@ export default function Registration(): any {
                                               label="Password"
                                               className="form-control"/>
                                     <i className="far fa-eye-slash postfix text-muted passwd-img"
-                                       onClick={pwd}></i>
+                                       onClick={evt => {
+                                           this.passwordImage(evt);
+                                           this.passwordInput('password');
+                                       }}></i>
                                 </MDBCol>
                                 <MDBCol size='4'>
-                                    <MDBInput id="password_confirm"
+                                    <MDBInput id="password-confirm"
                                               type="password"
                                               maxLength={30}
                                               size="sm"
                                               label="Confirm"
-                                              className="form-control">
-                                        <i className="far fa-eye-slash postfix text-muted passwd-img"
-                                           onClick={pwd}></i>
-                                    </MDBInput>
+                                              className="form-control"/>
+                                    <i className="far fa-eye-slash postfix text-muted passwd-img"
+                                       onClick={evt => {
+                                           this.passwordImage(evt);
+                                           this.passwordInput('password-confirm');
+                                       }}></i>
                                 </MDBCol>
                             </MDBRow>
                             <MDBRow>
@@ -75,14 +110,26 @@ export default function Registration(): any {
                                         a mix of letters, numbers & symbols.</MDBTypography>
                                 </MDBCol>
                             </MDBRow>
-                        </form>
-                    </MDBCol>
-                </MDBRow>
-            </MDBCardBody>
-        </MDBCard>
-    )
-};
+                            <br/><br/>
+                            <MDBRow>
+                                <MDBCol size='4'>
+                                    <MDBBtn className='textstyle-unset' color='secondary' rippleColor='light'
+                                            onClick={this.signin}>Sign in instead</MDBBtn>
+                                </MDBCol>
+                                <MDBCol size='4'>
+                                    <MDBBtn className="align-right textstyle-unset" onClick={this.next}>Next</MDBBtn>
+                                </MDBCol>
+                            </MDBRow>
+                        </MDBCol>
+                    </MDBRow>
+                </MDBCardBody>
+            </MDBCard>
+        );
+    }
 
-function pwd(event: any) {
-    event.currentTarget.classList.toggle('fa-eye');
+    render() {
+        return this.firstPage();
+    }
 }
+
+export default Registration;
