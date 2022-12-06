@@ -12,8 +12,8 @@ class Registration extends React.Component {
     }
 
     /**
-    * @param id
-    */
+     * @param id
+     */
     passwordInput(id: string) {
         const inputElement = document.getElementById(id) as HTMLInputElement;
         if (inputElement.getAttribute('type') === 'password') inputElement.setAttribute('type', 'text');
@@ -22,24 +22,21 @@ class Registration extends React.Component {
 
 
     next(evt: any) {
-
+        
     }
 
     signin(evt: any) {
 
     }
 
-    /**
-     * @return any
-     */
-    firstPage(): any {
+    render() {
         return (
             <MDBCard>
                 <MDBCardBody className="pt-5 pl-5 pr-5 pb-5">
-                    <MDBCardTitle>Create your Placeholder Account</MDBCardTitle>
-                    <br/>
                     <MDBRow id="personal-register">
-                        <MDBCol size='7'>
+                        <MDBCol size='7' className="ps-5">
+                            <MDBCardTitle className="ps-sm-0">Create your Placeholder Account</MDBCardTitle>
+                            <br/>
                             <MDBRow>
                                 <MDBCol size='4'>
                                     <MDBInput id="fname"
@@ -121,14 +118,13 @@ class Registration extends React.Component {
                                 </MDBCol>
                             </MDBRow>
                         </MDBCol>
+                        <MDBCol size='5'>
+                            <img src="assets/imgs/account.png" alt="account" width={300}/>
+                        </MDBCol>
                     </MDBRow>
                 </MDBCardBody>
             </MDBCard>
         );
-    }
-
-    render() {
-        return this.firstPage();
     }
 }
 
